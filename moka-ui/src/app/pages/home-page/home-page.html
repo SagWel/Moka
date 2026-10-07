@@ -1,0 +1,18 @@
+<div class="min-h-screen w-full bg-background text-white p-0 flex flex-col justify-start items-center gap-12.5">
+    <app-header class="w-full"></app-header>
+    <app-account-summary></app-account-summary>
+    @if (activeTab() === 'BUDGETS') {
+        <app-category-budget-tables></app-category-budget-tables>
+        <app-transaction-list></app-transaction-list>
+        <button class="w-107.5 text-center rounded-full p-2.5 h-20 bg-card border-2 border-border text-primary text-4xl mb-8"
+        (click)="selectTab('PROJECTS')">
+            PROJETS
+        </button>
+    } @else {
+        <app-project-dashboard></app-project-dashboard>
+        <button class="w-107.5 text-center rounded-full p-2.5 h-20 bg-primary border-2 border-border text-card text-4xl mb-8"
+        (click)="selectTab('BUDGETS')">
+            BUDGETS
+        </button>
+    }
+</div>

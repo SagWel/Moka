@@ -1,0 +1,85 @@
+<div class="border border-border rounded-2xl flex justify-center items-center gap-8 px-1.25 py-4">
+    <div class="flex flex-col gap-2.5 justify-center items-center relative border-r-2 border-r-border">
+        <p class="font-medium text-primary text-4xl">
+            Dépenses
+        </p>
+        <button (click)="onAddExpenseClick()" aria-label="Ajouter une dépense" title="Ajouter une Dépense" class="h-8 w-8 text-primary hover:text-text absolute top-0 right-[5%]">
+            <svg lucideIcon="circle-plus" [size]="32"/>
+        </button>
+        <div class="px-5 py-2.5 min-h-125 flex flex-col gap-2.5 justify-start items-start">
+            <div class="flex gap-2.5 p-2.5 rounded-full font-semibold w-full">
+                <p class="w-full">
+                    Catégories
+                </p>
+                <p class="w-35">
+                    Prévus
+                </p>
+                <p class="w-35">
+                    Réelles
+                </p>
+                <p class="w-35">
+                    Différences
+                </p>
+            </div>
+
+            @for (expense of expenses(); track expense.categoryName) {
+                <button (click)="onEditExpenseClick()" aria-label="Editer la Dépense" class="text-start flex gap-2.5 p-2.5 rounded-full font-normal bg-card hover:bg-card/50 w-full">
+                    <p class="w-full">
+                       {{expense.categoryName}}
+                    </p>
+                    <p class="w-35">
+                        {{expense.plannedAmount}} €
+                    </p>
+                    <p class="w-35">
+                        {{expense.actualAmount}} €
+                    </p>
+                    <p class="w-35">
+                        {{ (expense.plannedAmount - expense.actualAmount) | number:'1.2-2' }} €
+                    </p>
+                </button>
+            }
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-2.5 justify-center items-center relative border-l-2 border-l-border">
+        <p class="font-medium text-primary text-4xl">
+            Revenus
+        </p>
+        <button (click)="onAddIncomeClick()" aria-label="Ajouter un Revenu" title="Ajouter un Revenu" class="h-8 w-8 text-primary hover:text-text absolute top-0 right-[5%]">
+            <svg lucideIcon="circle-plus" [size]="32"/>
+        </button>
+        <div class="px-5 py-2.5 min-h-125 flex flex-col gap-2.5 justify-start items-start">
+            <div class="flex gap-2.5 p-2.5 rounded-full font-semibold">
+                <p class="w-full">
+                    Catégories
+                </p>
+                <p class="w-35">
+                    Prévus
+                </p>
+                <p class="w-35">
+                    Réelles
+                </p>
+                <p class="w-35">
+                    Différences
+                </p>
+            </div>
+
+            @for (income of incomes(); track income.categoryName) {
+                <button (click)="onEditIncomeClick()" aria-label="Editer le Revenu" class="text-start flex gap-2.5 p-2.5 rounded-full font-normal bg-card hover:bg-card/50 w-full">
+                    <p class="w-full">
+                       {{income.categoryName}}
+                    </p>
+                    <p class="w-35">
+                        {{income.plannedAmount}} €
+                    </p>
+                    <p class="w-35">
+                        {{income.actualAmount}} €
+                    </p>
+                    <p class="w-35">
+                        {{ (income.plannedAmount - income.actualAmount) | number:'1.2-2' }} €
+                    </p>
+                </button>
+            }
+        </div>
+    </div>
+</div>

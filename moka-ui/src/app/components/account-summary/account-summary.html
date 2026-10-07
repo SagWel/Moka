@@ -1,0 +1,115 @@
+<div class="flex flex-col justify-center items-center gap-12.5">
+    <div class="relative flex justify-center items-center gap-7.5">
+        @if (accounts.length > 0) {
+            @if(currentAccountIndex() > 0) {
+                <button (click)="previousAccount()" aria-label="compte précédent" class="h-8 w-8 text-primary hover:text-primary/50">
+                    <svg lucideIcon="circle-chevron-left" [size]="32"></svg>
+                </button>
+            }
+            <button (click)="onEditAccountClick()" aria-label="editer compte" class="border-5 border-border flex flex-col gap-5 rounded-4xl px-2.5 py-5 justify-center items-center hover:border-text">
+                <h2 class="text-text font-semibold text-4xl">
+                    Compte 1
+                </h2>
+                <p class="text-text font-medium text-2xl">
+                    0 €
+                </p>
+                <p class="text-text font-normal text-xl flex gap-5">
+                    <span class="font-medium">Estimation :</span>0 €<span class="font-medium">au</span>01/01/2027
+                </p>
+            </button>
+            @if(currentAccountIndex() < accounts.length + 1) {
+                <button (click)="nextAccount()" aria-label="compte suivant" class="h-8 w-8 text-primary hover:text-primary/50">
+                    <svg lucideIcon="circle-chevron-right" [size]="32"></svg>
+                </button>
+            }
+            <button (click)="onAddAccountClick()" aria-label="Ajouter un compte" class="h-8 w-8 text-primary hover:text-text absolute top-0 right-21.5" title="Ajouter un compte">
+                <svg lucideIcon="circle-plus" [size]="40"></svg>
+            </button>
+        } @else {
+            <button (click)="onAddAccountClick()" aria-label="Ajouter un compte" class="h-8 w-8 text-primary hover:text-text" title="Ajouter un compte">
+                <svg lucideIcon="circle-plus" [size]="40"></svg>
+            </button>
+        }
+    </div>
+
+    <div class="flex justify-center items-center gap-61">
+        @if (expenseCategories.length > 0) {
+            <div class="relative w-87.5 h-87.5 flex items-center justify-center">
+                <svg class="w-full h-full -rotate-90" viewBox="0 0 400 400">
+                    <circle cx="200" cy="200" r="160" class="stroke-border fill-none" stroke-width="30"/>
+                    @for (slice of expenseOuterSlices(); track slice.categoryName) {
+                        <circle 
+                        cx="200"
+                        cy="200"
+                        r="160"
+                        fill="none"
+                        stroke-width="30"
+                        [attr.stroke]="slice.categoryColor"
+                        [attr.stroke-dasharray]="slice.strokeDasharray"
+                        [attr.stroke-dashoffset]="slice.strokeDashoffset"
+                        class="transition-all duration-500"
+                        />
+                    }
+    
+                    <circle  cx="200" cy="200" r="130" class="stroke-white fill-none" stroke-width="30"/>
+                    @for (slice of expenseInnerSlices(); track slice.categoryName) {
+                        <circle 
+                        cx="200"
+                        cy="200"
+                        r="130"
+                        fill="none"
+                        stroke-width="30"
+                        [attr.stroke]="slice.categoryColor"
+                        [attr.stroke-dasharray]="slice.strokeDasharray"
+                        [attr.stroke-dashoffset]="slice.strokeDashoffset"
+                        class="transition-all duration-500"
+                        />
+                    }
+                </svg>
+    
+                <p class="absolute flex flex-col items-center justify-center text-center text-4xl font-medium">
+                    Dépenses
+                </p>
+            </div>
+        }
+        @if (incomeCategories.length > 0) {
+            <div class="relative w-87.5 h-87.5 flex items-center justify-center">
+                <svg class="w-full h-full -rotate-90" viewBox="0 0 400 400">
+                    <circle cx="200" cy="200" r="160" class="stroke-border fill-none" stroke-width="30"/>
+                    @for (slice of incomeOuterSlices(); track slice.categoryName) {
+                        <circle 
+                        cx="200"
+                        cy="200"
+                        r="160"
+                        fill="none"
+                        stroke-width="30"
+                        [attr.stroke]="slice.categoryColor"
+                        [attr.stroke-dasharray]="slice.strokeDasharray"
+                        [attr.stroke-dashoffset]="slice.strokeDashoffset"
+                        class="transition-all duration-500"
+                        />
+                    }
+
+                    <circle  cx="200" cy="200" r="130" class="stroke-white fill-none" stroke-width="30"/>
+                    @for (slice of incomeInnerSlices(); track slice.categoryName) {
+                        <circle 
+                        cx="200"
+                        cy="200"
+                        r="130"
+                        fill="none"
+                        stroke-width="30"
+                        [attr.stroke]="slice.categoryColor"
+                        [attr.stroke-dasharray]="slice.strokeDasharray"
+                        [attr.stroke-dashoffset]="slice.strokeDashoffset"
+                        class="transition-all duration-500"
+                        />
+                    }
+                </svg>
+
+                <p class="absolute flex flex-col items-center justify-center text-center text-4xl font-medium">
+                    Revenus
+                </p>
+            </div>
+        }
+    </div>
+</div>

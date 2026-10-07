@@ -1,0 +1,53 @@
+<div class="border border-border rounded-2xl flex flex-col gap-2.5 justify-center items-center relative p-4">
+    <p class="font-medium text-primary text-4xl">
+        Transcations
+    </p>
+    <button (click)="onAddTransactionClick()" aria-label="Ajouter une transaction" title="Ajouter une Transaction" class="h-8 w-8 text-primary hover:text-text absolute top-[3%] right-[5%]">
+        <svg lucideIcon="circle-plus" [size]="32"/>
+    </button>
+    <div class="px-5 py-2.5 min-h-125 flex flex-col gap-2.5 justify-start items-start">
+        <div class="flex gap-2.5 p-2.5 rounded-full font-semibold w-full">
+            <p class="w-35">
+                Dates
+            </p>
+            <p class="w-35">
+                Montants
+            </p>
+            <p class="w-full">
+                Descriptions
+            </p>
+            <p class="w-35">
+                Catégories
+            </p>
+            <p class="w-35">
+                Satatus
+            </p>
+        </div>
+
+        @for (transaction of transactions(); track transaction.label) {
+            <button (click)="onEditTransactionClick()" aria-label="Editer la Transcation" class="text-start flex gap-2.5 p-2.5 rounded-full font-normal w-full"
+            [ngClass]="{
+                'bg-card hover:bg-card/50': transaction.status === 'PENDING',
+                'bg-danger hover:bg-danger/50': transaction.status === 'REJECTED',
+                'bg-accent hover:bg-accent/50': transaction.status === 'CHECKED',
+                'border-2 border-white': transaction.isRecurring
+            }">
+                <p class="w-35">
+                    {{ transaction.date }}
+                </p>
+                <p class="w-35">
+                    {{ transaction.amount }}
+                </p>
+                <p class="w-full">
+                    {{ transaction.description }}
+                </p>
+                <p class="w-35">
+                    {{ transaction.category }}
+                </p>
+                <p class="w-35">
+                    {{ transaction.status }}
+                </p>
+            </button>
+        }
+    </div>
+</div>
