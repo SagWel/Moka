@@ -38,7 +38,7 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.CREATED).body(creatAccount);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAccount(@PathVariable String id) {
         accountService.deleteAccount(id);
         return ResponseEntity.noContent().build();

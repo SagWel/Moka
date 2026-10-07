@@ -38,7 +38,7 @@ public class BudgetMonthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createBugetMonth);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBudgetMonth(@PathVariable String id) {
         budgetMonthService.deleteBudgetMonth(id);
         return ResponseEntity.noContent().build();
