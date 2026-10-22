@@ -1,6 +1,6 @@
 import { Component, computed, output, signal } from '@angular/core';
 import { LucideDynamicIcon } from '@lucide/angular';
-import { Account } from '../../models/models';
+import { Account, Months } from '../../models/models';
 
 interface CategoryShare {
   categoryName: string,
@@ -23,13 +23,21 @@ export class AccountSummary {
   readonly OUTER_EXPENSE_CIRCUMFERENCE: number = 2 * Math.PI * this.OUTER_EXPENSE_R;
   readonly INNER_EXPENSE_CIRCUMFERENCE: number = 2 * Math.PI * this.INNER_EXPENSE_R;
 
-  expenseCategories = signal<CategoryShare[] |[]>([])
+  private getCurrentMonthEnum(): Months {
+    const monthValues = Object.values(Months);
+    const currentMonthIndex = new Date().getMonth();
+    return monthValues[currentMonthIndex]
+  }
 
-  totalExpensePlanned = computed(() => 
+  readonly currentMonth = signal<Months>(this.getCurrentMonthEnum());
+
+  protected readonly expenseCategories = signal<CategoryShare[] |[]>([]);
+
+  protected totalExpensePlanned = computed(() => 
     this.expenseCategories().reduce((sum, cat) => sum + cat.plannedAmount, 0)
   );
 
-  expenseOuterSlices = computed(() => {
+  protected expenseOuterSlices = computed(() => {
     const total = this.totalExpensePlanned();
     if (total === 0) return [];
 
@@ -44,7 +52,7 @@ export class AccountSummary {
     });
   });
 
-  expenseInnerSlices = computed(() => {
+  protected expenseInnerSlices = computed(() => {
     const total = this.totalExpensePlanned();
     if (total === 0) return [];
 
@@ -65,13 +73,13 @@ export class AccountSummary {
   readonly OUTER_INCOME_CIRCUMFERENCE: number = 2 * Math.PI * this.OUTER_INCOME_R;
   readonly INNER_INCOME_CIRCUMFERENCE: number = 2 * Math.PI * this.INNER_INCOME_R;
 
-  incomeCategories = signal<CategoryShare[] |[]>([])
+  protected readonly incomeCategories = signal<CategoryShare[] |[]>([]);
 
-  totalIncomePlanned = computed(() => 
+  protected totalIncomePlanned = computed(() => 
     this.incomeCategories().reduce((sum, cat) => sum + cat.plannedAmount, 0)
   );
 
-  incomeOuterSlices = computed(() => {
+  protected incomeOuterSlices = computed(() => {
     const total = this.totalIncomePlanned();
     if (total === 0) return [];
 
@@ -87,7 +95,7 @@ export class AccountSummary {
     });
   });
 
-  incomeInnerSlices = computed(() => {
+  protected incomeInnerSlices = computed(() => {
     const total = this.totalIncomePlanned();
     if (total === 0) return [];
 
@@ -102,27 +110,31 @@ export class AccountSummary {
     });
   });
 
-  accounts = signal<Account[] | []>([]);
+  protected readonly accounts = signal<Account[] | []>([]);
+  protected readonly currentAccountIndex = signal<number>(0);
+  protected readonly currentAccount = computed(() => {
+    const list = this.accounts();
+    const index = this.currentAccountIndex();
+    return list.length > 0 ? list[index] : null
+  })
 
-  currentAccountIndex = signal<number>(0);
+  readonly openAddAccount = output<void>();
 
-  openAddAccount = output<void>();
+  readonly openEditAccount = output<void>();
 
-  openEditAccount = output<void>();
-
-  previousAccount(): void {
+  protected previousAccount(): void {
     this.currentAccountIndex.update(i => Math.max(0, i - 1));
-  }
+  };
 
-  nextAccount(): void {
+  protected nextAccount(): void {
     this.currentAccountIndex.update(i => i + 1);
-  }
+  };
 
-  onAddAccountClick(): void {
+  protected onAddAccountClick(): void {
     this.openAddAccount.emit();
-  }
+  };
 
-  onEditAccountClick(): void {
+  protected onEditAccountClick(): void {
     this.openEditAccount.emit();
-  }
+  };
 }

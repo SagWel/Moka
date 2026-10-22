@@ -9,6 +9,21 @@ export enum TransactionStatus {
     REJECTED = 'REJECTED'
 }
 
+export enum Months {
+    JANUARY = 'Janvier',
+    FEBRUARY = 'Fevrier',
+    MARCH = 'Mars',
+    APRIL = 'Avril',
+    MAY = 'Mai',
+    JUNE = 'Juin',
+    JULY = 'Juillet',
+    AUGUST = 'Aout',
+    SEPTEMBER = 'Septembre',
+    OCTOBER = 'Octobre',
+    NOVEMBER = 'Novembre',
+    DECEMBER = 'Decembre'
+}
+
 export interface Category {
     id?: string,
     name: string,
