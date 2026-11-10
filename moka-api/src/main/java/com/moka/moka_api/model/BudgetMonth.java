@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class BudgetMonth {
+
     @Id
     private String id;
 
@@ -27,4 +28,6 @@ public class BudgetMonth {
     private Double targetIncome;
 
     private List<CategoryBudget> categoryBudgets;
+
+    private String accountId;
 }

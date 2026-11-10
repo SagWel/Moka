@@ -26,4 +26,6 @@ public class Category {
     private String color;
 
     private String icon;
+
+    private String userId;
 }

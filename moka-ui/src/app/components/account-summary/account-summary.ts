@@ -1,6 +1,6 @@
 import { Component, computed, output, signal } from '@angular/core';
 import { LucideDynamicIcon } from '@lucide/angular';
-import { Account, Months } from '../../models/models';
+import { Account } from '../../models/models';
 
 interface CategoryShare {
   categoryName: string,
@@ -22,14 +22,6 @@ export class AccountSummary {
 
   readonly OUTER_EXPENSE_CIRCUMFERENCE: number = 2 * Math.PI * this.OUTER_EXPENSE_R;
   readonly INNER_EXPENSE_CIRCUMFERENCE: number = 2 * Math.PI * this.INNER_EXPENSE_R;
-
-  private getCurrentMonthEnum(): Months {
-    const monthValues = Object.values(Months);
-    const currentMonthIndex = new Date().getMonth();
-    return monthValues[currentMonthIndex]
-  }
-
-  readonly currentMonth = signal<Months>(this.getCurrentMonthEnum());
 
   protected readonly expenseCategories = signal<CategoryShare[] |[]>([]);
 

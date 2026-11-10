@@ -1,9 +1,6 @@
 <div class="flex flex-col justify-center items-center gap-12.5">
     <div class="relative flex justify-center items-center gap-7.5 w-full">
-        @if (currentAccount(); as account) {
-            <button [attr.aria-label]="'Choisir un mois (actuel : ' + currentMonth() + ')'" class="flex justify-center items-center border-2 border-border hover:border-white font-medium hover:text-primary py-1.25 px-2.5 rounded-3xl absolute top-0 left-21.5">
-                {{ currentMonth() }}
-            </button>
+        @if (currentAccount(); as account ) {
             @if(currentAccountIndex() > 0) {
                 <button (click)="previousAccount()" aria-label="compte précédent" class="h-8 w-8 text-primary hover:text-primary/50">
                     <svg lucideIcon="circle-chevron-left" [size]="32"></svg>
@@ -29,11 +26,11 @@
             } @else {
                 <div class="h-8 w-8"></div>
             }
-            <button (click)="onAddAccountClick()" aria-label="Ajouter un compte" class="h-8 w-8 text-primary hover:text-text absolute top-0 right-21.5" title="Ajouter un compte">
+            <button (click)="onAddAccountClick()" aria-label="Ajouter un compte" class="h-8 w-8 text-primary hover:text-text/80 absolute top-0 right-21.5" title="Ajouter un compte">
                 <svg lucideIcon="circle-plus" [size]="40"></svg>
             </button>
         } @else {
-            <button (click)="onAddAccountClick()" aria-label="Ajouter un compte" class="h-8 w-8 text-primary hover:text-text" title="Ajouter un compte">
+            <button (click)="onAddAccountClick()" aria-label="Ajouter un compte" class="h-8 w-8 text-primary hover:text-text/80" title="Ajouter un compte">
                 <svg lucideIcon="circle-plus" [size]="40"></svg>
             </button>
         }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moka.moka_api.model.BudgetMonth;
@@ -27,14 +28,15 @@ public class BudgetMonthController {
 
     private final BudgetMonthService budgetMonthService;
 
-    @GetMapping
-    public ResponseEntity<List<BudgetMonth>> getAllBudgetMonths() {
-        return ResponseEntity.ok(budgetMonthService.getAllBudgetMonths());
+    @GetMapping("/{accountId}")
+    public ResponseEntity<List<BudgetMonth>> getAllAccountBudgetMonths(@PathVariable String accountId,
+            @RequestParam int month, @RequestParam int year) {
+        return ResponseEntity.ok(budgetMonthService.getBudgetMonthsByAccount(accountId, month, year));
     }
 
     @PostMapping
     public ResponseEntity<BudgetMonth> createBudgetMonth(@RequestBody BudgetMonth budgetMonth) {
-        BudgetMonth createBugetMonth = budgetMonthService.creaBudgetMonth(budgetMonth);
+        BudgetMonth createBugetMonth = budgetMonthService.createBudgetMonth(budgetMonth);
         return ResponseEntity.status(HttpStatus.CREATED).body(createBugetMonth);
     }
 

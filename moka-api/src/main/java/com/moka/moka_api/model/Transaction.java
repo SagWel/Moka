@@ -35,7 +35,7 @@ public class Transaction {
 
     private LocalDate date;
 
-    private TransactionStatus status;
+    private TransactionStatus transactionStatus;
 
-    private Boolean isRecurring;
+    private Recurrence recurrence;
 }

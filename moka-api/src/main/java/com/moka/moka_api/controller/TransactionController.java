@@ -19,7 +19,7 @@ import com.moka.moka_api.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/transctions")
+@RequestMapping("/api/transactions")
 
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
@@ -27,9 +27,9 @@ public class TransactionController {
 
     private final TransactionService transactionService;
 
-    @GetMapping
-    public ResponseEntity<List<Transaction>> getAllTransactions() {
-        return ResponseEntity.ok(transactionService.getAllTransactions());
+    @GetMapping("/{accountId}")
+    public ResponseEntity<List<Transaction>> getAllTransactionsByAccountId(@PathVariable String accountId) {
+        return ResponseEntity.ok(transactionService.getTransactionsByAccount(accountId));
     }
 
     @PostMapping
@@ -39,7 +39,7 @@ public class TransactionController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTransactionn(@PathVariable String id) {
+    public ResponseEntity<Void> deleteTransaction(@PathVariable String id) {
         transactionService.deleteTransaction(id);
         return ResponseEntity.noContent().build();
     }

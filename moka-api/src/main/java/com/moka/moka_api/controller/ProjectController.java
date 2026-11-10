@@ -27,14 +27,14 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-    @GetMapping
-    public ResponseEntity<List<Project>> getAllProjects() {
-        return ResponseEntity.ok(projectService.getAllProjects());
+    @GetMapping("/{accountId}")
+    public ResponseEntity<List<Project>> getAllProjectsByAccount(@PathVariable String accountId) {
+        return ResponseEntity.ok(projectService.getProjectsByAccount(accountId));
     }
 
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
-        Project creaProject = projectService.creatProject(project);
+        Project creaProject = projectService.createProject(project);
         return ResponseEntity.status(HttpStatus.CREATED).body(creaProject);
     }
 

@@ -27,9 +27,9 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    @GetMapping
-    public ResponseEntity<List<Account>> getAllAccounts() {
-        return ResponseEntity.ok(accountService.getAllAccounts());
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Account>> getAllUserAccounts(@PathVariable String userId) {
+        return ResponseEntity.ok(accountService.getAccountsByUser(userId));
     }
 
     @PostMapping

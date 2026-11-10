@@ -30,4 +30,6 @@ public class Project {
     private LocalDate targetDate;
 
     private Integer priority;
+
+    private String accountId;
 }

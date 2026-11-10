@@ -16,8 +16,8 @@ public class TransactionService {
 
     private final TransactionRepository transactionRepository;
 
-    public List<Transaction> getAllTransactions() {
-        return transactionRepository.findAll();
+    public List<Transaction> getTransactionsByAccount(String accountId) {
+        return transactionRepository.findByAccountId(accountId);
     }
 
     public Transaction createTransaction(Transaction transaction) {

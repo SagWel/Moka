@@ -16,11 +16,11 @@ public class ProjectService {
 
     private final ProjectRepository projectRepository;
 
-    public List<Project> getAllProjects() {
-        return projectRepository.findAll();
+    public List<Project> getProjectsByAccount(String accountId) {
+        return projectRepository.findByAccountId(accountId);
     }
 
-    public Project creatProject(Project project) {
+    public Project createProject(Project project) {
         return projectRepository.save(project);
     }
 

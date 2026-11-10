@@ -16,11 +16,11 @@ public class BudgetMonthService {
 
     private final BudgetMonthRepository budgetMonthRepository;
 
-    public List<BudgetMonth> getAllBudgetMonths() {
-        return budgetMonthRepository.findAll();
+    public List<BudgetMonth> getBudgetMonthsByAccount(String accountId, Integer month, Integer year) {
+        return budgetMonthRepository.findByAccountIdAndMonthAndYear(accountId, month, year);
     }
 
-    public BudgetMonth creaBudgetMonth(BudgetMonth budgetMonth) {
+    public BudgetMonth createBudgetMonth(BudgetMonth budgetMonth) {
         return budgetMonthRepository.save(budgetMonth);
     }
 

@@ -30,4 +30,6 @@ public class Account {
     private Boolean apiSyncEnabled;
 
     private Integer syncDayOfMonth;
+
+    private String userId;
 }
