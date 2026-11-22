@@ -38,7 +38,6 @@ https://www.docker.com/get-started/
 ## Features
 
 1. Implemented
-   -
 
 2. In the future
    - add an account
