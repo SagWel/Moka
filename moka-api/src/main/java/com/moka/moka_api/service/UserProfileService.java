@@ -26,7 +26,6 @@ public class UserProfileService {
         UserProfile profile = profileRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Profil introuvable pour l'ID : " + id));
 
-        profile.setUsername(dto.username());
         profile.setAvatarUrl(dto.avatarURML());
 
         UserProfile updated = profileRepository.save(profile);

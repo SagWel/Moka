@@ -23,7 +23,5 @@ public class UserProfile {
 
     private String password;
 
-    private String username;
-
     private String avatarUrl;
 }
